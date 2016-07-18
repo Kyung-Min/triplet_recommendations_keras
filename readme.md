@@ -8,16 +8,7 @@ Along the lines of BPR [1].
 
 [1] Rendle, Steffen, et al. "BPR: Bayesian personalized ranking from implicit feedback." Proceedings of the Twenty-Fifth Conference on Uncertainty in Artificial Intelligence. AUAI Press, 2009.
 
-This is implemented (more efficiently) in LightFM (https://github.com/lyst/lightfm). See the MovieLens example (https://github.com/lyst/lightfm/blob/master/examples/movielens/example.ipynb) for results comparable to this notebook.
-
 ## Set up the architecture
-A simple dense layer for both users and items: this is exactly equivalent to latent factor matrix when multiplied by binary user and item indices. There are three inputs: users, positive items, and negative items. In the triplet objective we try to make the positive item rank higher than the negative item for that user.
-
-Because we want just one single embedding for the items, we use shared weights for the positive and negative item inputs (a siamese architecture).
-
-This is all very simple but could be made arbitrarily complex, with more layers, conv layers and so on. I expect we'll be seeing a lot of papers doing just that.
-
-
 
 ```python
 """
@@ -76,10 +67,6 @@ def get_graph(num_users, num_items, latent_dim):
 ```
 
 ## Load and transform data
-We're going to load the Movielens 100k dataset and create triplets of (user, known positive item, randomly sampled negative item).
-
-The success metric is AUC: in this case, the probability that a randomly chosen known positive item from the test set is ranked higher for a given user than a ranomly chosen negative item.
-
 
 ```python
 num_epochs = 5
@@ -140,7 +127,6 @@ print('AUC before training %s' % metrics.full_auc(model, test))
 
 
 ## Run the model
-Run for a couple of epochs, checking the AUC after every epoch.
 
 
 ```python
@@ -192,4 +178,3 @@ for epoch in range(num_epochs):
     AUC 0.842522501549
 
 
-The AUC is in the mid-80s. At some point we start overfitting, so it would be a good idea to stop early or add some regularization.
