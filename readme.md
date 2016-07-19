@@ -2,7 +2,7 @@
 # Recommendations in Keras using triplet loss
 Note: These codes show how to implement ranking loss using Keras Graph function.
       The original work is https://github.com/maciejkula/triplet_recommendations_keras and I slightly revise codes to follow updated Keras version.
-      The codes using Keras Model function will be uploaded soon.
+      The codes using Keras Model class will be uploaded soon.
 
 Along the lines of BPR [1]. 
 
