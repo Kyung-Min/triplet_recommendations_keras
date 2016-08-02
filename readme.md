@@ -27,7 +27,8 @@ from keras import backend as K
 from keras.models import Sequential, Graph
 from keras.layers.core import Dense, Lambda
 from keras.optimizers import Adagrad, Adam
-
+from keras.models import*
+from keras.layers import*
 
 import data
 import metrics
